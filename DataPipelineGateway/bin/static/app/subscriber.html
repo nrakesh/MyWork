@@ -1,0 +1,20 @@
+<div>
+<table datatable="ng" class="row-border hover">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="stream in streams">
+            <td>{{ stream.id }}</td>
+            <td>{{ stream.name }}</td>
+            <td>{{ stream.type }}</td>
+            <td>{{ stream.description }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

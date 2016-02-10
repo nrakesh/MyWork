@@ -1,0 +1,111 @@
+<div class="modal-header">
+	<h3 class="modal-title">
+		Manage subscriptions for stream [ {{stream.name}} ]
+	</h3>
+</div>
+
+
+<div class="modal-body">
+	<uib-tabset> 
+			<uib-tab heading="List subscribers" active="action.isListing">
+				<div class="m-t-md">
+					<div class="wrapper">
+						<table class="table full-width">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Subscriber</th>
+										<th>Process Strategy</th>
+										<th>Delivery Details</th>
+										<th class="text-right">Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="s in stream.subscriptions">
+										<td>{{s.id}}</td>
+										<td>{{s.subscriber.name}}</td>
+										<td>{{s.processStrategy}}</td>
+										<td>{{s.deliveryDetails}}</td>
+										<td>
+											<button
+												class="btn btn-danger"
+												ng-click="deleteSubscription(s)">
+												<i class="glyphicon glyphicon-trash"></i>
+											</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+					</div>
+				</div>
+			</uib-tab> 
+			<uib-tab heading="Add new subscription">
+				<form name="form" class="form-horizontal form-validation">
+			        <fieldset>
+			          <div class="form-group">
+			            <label class="col-md-3 control-label text-right">Subscriber</label>
+			            <div class="col-md-7">
+			              <select class="form-control" ng-options="subscriber as subscriber.name for subscriber in subscribers" ng-model="sub.subscriber"></select>
+			            </div>
+			          </div>
+			          <div class="form-group">
+			            <label class="col-md-3 control-label text-right">Delivery Method</label>
+			            <div class="col-md-7">
+			              <select class="form-control" ng-options="deliveryMethod as deliveryMethod for deliveryMethod in deliveryMethods" ng-model="deliveryMethod"></select>
+			            </div>
+			          </div>
+			          <div class="form-group">
+			            <label class="col-md-3 control-label text-right">Delivery Details</label>
+			            <div class="col-md-7">
+			              <input class="form-control" type="text" ng-model="sub.deliveryDetails">
+			            </div>
+			          </div>
+			          <div class="form-group">
+			            <label class="col-md-3 control-label text-right">Process Strategy</label>
+			            <div class="col-md-7">
+			              <select class="form-control" ng-options="processStrategy as processStrategy for processStrategy in processStrategies" ng-model="sub.processStrategy"></select>
+			            </div>
+			          </div>
+			          <div class="form-group">
+			            <label class="col-md-3 control-label text-right"></label>
+			            <div class="col-md-7">
+			              <button class="btn btn-info" ng-click="addSubscription()" ng-disabled="form.$invalid">Submit</button>
+			            </div>
+			          </div>
+			        </fieldset>
+			 	</form>
+			</uib-tab> 
+			<uib-tab heading="Delete existing subscription"
+				active="action.isDeleting"
+				ng-show="action.isDeleting" disable="true">
+				<div class="panel panel-default m-md">
+					<div class="panel-body">
+						<span>Do you want to delete the following subscriber?</span>
+						<div class="pull-right">
+							<button class="btn btn-danger" ng-click="deleteAction()">
+								<i class="fa fa-trash"></i> Confirm
+							</button>
+						</div>
+					</div>
+					<table class="table full-width">
+						<tr>
+							<td>Subscriber ID</td>
+							<td>{{request.id}}</td>
+						</tr>
+						<tr>
+							<td>Name</td>
+							<td>{{request.name}}</td>
+						</tr>
+						<tr>
+							<td>Description</td>
+							<td>{{request.description}}</td>
+						</tr>
+					</table>
+				</div>
+			</uib-tab> 
+			
+	</uib-tabset>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-default" ng-click="cancel()">Close</button>
+</div>

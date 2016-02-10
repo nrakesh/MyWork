@@ -1,0 +1,12 @@
+.app-header-fixed {
+    padding-top: 50px;
+}
+.app {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+}
+.form-wrapper {
+	padding:20px;
+}
